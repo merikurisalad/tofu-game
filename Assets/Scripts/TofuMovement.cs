@@ -12,7 +12,7 @@ public class Movement : MonoBehaviour
     private bool isIdle = true;
     private bool isJump = false;
     private float direction = 1f; // Current movement direction (1 = right, -1 = left)
-    private SpriteRenderer TofuSprite;
+    // private SpriteRenderer TofuSprite;
     private Animator TofuAnimator;
 
     // Update is called once per frame
@@ -86,7 +86,7 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
-        TofuSprite = this.GetComponent<SpriteRenderer>();
+        // TofuSprite = this.GetComponent<SpriteRenderer>();
         TofuAnimator = this.GetComponent<Animator>();
         TofuAnimator.Play("tofu_idle");
         isIdle = true;
