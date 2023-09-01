@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d74987aa37a6ac84fab0f11b1d6592e3
+guid: f4a0731f75714b844bb77b2cb352b426
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,10 +9,8 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - CookieRunOTF
-  fallbackFontReferences:
-  - {fileID: 12800000, guid: b649185df62f5d14b9e0e5195f31d951, type: 3}
-  - {fileID: 12800000, guid: 4473c9a9fb74c46498866e171bb4be40, type: 3}
+  - DNF Bit Bit OTF
+  fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1
