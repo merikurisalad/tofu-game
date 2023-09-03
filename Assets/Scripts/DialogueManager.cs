@@ -6,10 +6,11 @@ using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
-    public TextMeshProUGUI dislougueText;
+    public TypeEffect dialougue;
     public string[] dialogues;
     public string nextSceneName;
-    private int dialogueIndex = 0;
+
+    int dialogueIndex = 0;
 
     private void Update()
     {
@@ -34,11 +35,18 @@ public class DialogueManager : MonoBehaviour
 
     public void ShowNextDialogue()
     {
+
+        if (dialougue.isAnim)
+        {
+            dialougue.SetMsg("");
+            return;
+        }
+
         if (dialogueIndex < dialogues.Length)
         {
             Debug.Log(dialogues[dialogueIndex]);
 
-            dislougueText.text = dialogues[dialogueIndex];
+            dialougue.SetMsg(dialogues[dialogueIndex]);
             dialogueIndex++;
         }
         else
