@@ -35,31 +35,60 @@ public class MainActions : MonoBehaviour
 
     private void FeedCallBack()
     {
-        tofuData.status.ChangeHealth(ACTION_UNIT);
-        tofuData.status.ChangeAffection(ACTION_UNIT);
-        lastFeed = DateTime.UtcNow;
-        tofuData.activitiesDoneInADay -= 1;
+        if (tofuData.CheckAndApplyActivityChange(-1))
+        {
+            tofuData.status.ChangeHealth(ACTION_UNIT);
+            tofuData.status.ChangeAffection(ACTION_UNIT);
+            lastFeed = DateTime.UtcNow;
+        }
+        else
+        {
+            SendMaxedOutActivity();
+        }
     }
 
     private void WashCallBack()
     {
-        tofuData.status.ChangeHealth(ACTION_UNIT);
-        tofuData.status.ChangeCharm(ACTION_UNIT);
-        lastWash = DateTime.UtcNow;
-        tofuData.activitiesDoneInADay -= 1;
+        if (tofuData.CheckAndApplyActivityChange(-1))
+        {
+            tofuData.status.ChangeHealth(ACTION_UNIT);
+            tofuData.status.ChangeCharm(ACTION_UNIT);
+            lastFeed = DateTime.UtcNow;
+        }
+        else
+        {
+            SendMaxedOutActivity();
+        }
     }
 
     private void IGUploadCallBack()
     {
-        tofuData.status.ChangeReputation(ACTION_UNIT);
-        tofuData.activitiesDoneInADay -= 1;
+        if (tofuData.CheckAndApplyActivityChange(-1))
+        {
+            tofuData.status.ChangeReputation(ACTION_UNIT);
+        }
+        else
+        {
+            SendMaxedOutActivity();
+        }
     }
 
     private void GivingBeanCallBack()
     {
-        tofuData.status.ChangeAffection(ACTION_UNIT);
-        tofuData.status.ChangeCharm(ACTION_UNIT);
-        tofuData.activitiesDoneInADay -= 1;
+        if (tofuData.CheckAndApplyActivityChange(-1))
+        {
+            tofuData.status.ChangeAffection(ACTION_UNIT);
+            tofuData.status.ChangeCharm(ACTION_UNIT);
+        }
+        else
+        {
+            SendMaxedOutActivity();
+        }
+    }
+
+    private void SendMaxedOutActivity()
+    {
+        // TODO: notify user that they have maxed out their available activities
     }
     
     // Update is called once per frame
