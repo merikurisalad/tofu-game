@@ -50,16 +50,11 @@ public class Status : MonoBehaviour
         reputation = rand.Next(INITIAL_LOWEST, INITIAL_HIGHEST);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        // TODO: check with UI and discuss how to show the status on UI (or just delete Update method?)
-        ManageScene();
-    }
-
     public void ChangeHealth(int score)
     {
         health += score;
+        // moved from Update (instead of checking every frame, check when health changes)
+        CheckGameOver();
     }
 
     public void ChangeAffection(int score)
@@ -82,9 +77,9 @@ public class Status : MonoBehaviour
         reputation += score;
     }
 
-    private void ManageScene()
+    private void CheckGameOver()
     {
-        if (health == 0)
+        if (health <= 0)
         {
             SceneManager.LoadScene("GameOverScene");
         }
