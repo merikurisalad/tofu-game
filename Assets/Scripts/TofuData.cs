@@ -1,15 +1,72 @@
 using UnityEngine;
 using System;
-
+using System.Collections.Generic;
 
 public class TofuData
 {
-    public Status status = new Status();
-    public int money = 50; // INITIAL AMOUNT COULD BE CHANGED
+    public class CollectionItem // Where to locate?
+    {
+        public string itemName;
+        public string description;
+        public bool isCollected;
+        public string itemImageName; // TODO: 
+    }
+
+    private static TofuData _instance;
+    public static TofuData instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = new TofuData();
+            }
+            return _instance;
+        }
+    }
+
+
+    public Status status;
+    public int money;
+    // public int activitiesDoneInADay;
     public int maxActivitiesInDay = 10; // arbitrary
     public int availableActivities = maxActivitiesInDay;
-    public int today = DateTime.UtcNow.Day;
+    public int today;
+    public int remainingAttempts;
+    public List<CollectionItem> collectionList = new List<CollectionItem>();
 
+
+
+    // Start is called before the first frame update
+    private TofuData()
+    {
+        ResetData();
+    }
+
+    public void ResetData()
+    {
+        status = new Status();
+        money = 50;
+        // TODO: decide what to do with activities, max, etc.
+        // activitiesDoneInADay = 0;
+        availableActivities = 10; // arbitrary
+        today = 1;
+        remainingAttempts = 3;
+
+    }
+
+
+    public void ApplyLoadedData(TofuData loadedData)
+    {
+        status = loadedData.status;
+        money = loadedData.money;
+        activitiesDoneInADay = loadedData.activitiesDoneInADay;
+        today = loadedData.today;
+        remainingAttempts = loadedData.remainingAttempts;
+        collectionList = loadedData.collectionList;
+
+    }
+  
     // Update is called once per frame
     void Update()
     {

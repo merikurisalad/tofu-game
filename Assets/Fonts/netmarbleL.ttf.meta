@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b649185df62f5d14b9e0e5195f31d951
+guid: 7f39d3c455a0e594db6613569550dca0
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,9 +9,10 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - CookieRunOTF
+  - netmarble
   fallbackFontReferences:
-  - {fileID: 12800000, guid: 4473c9a9fb74c46498866e171bb4be40, type: 3}
+  - {fileID: 12800000, guid: 1b74d39b768e2c5489e1e30ca23e3ebd, type: 3}
+  - {fileID: 12800000, guid: 5328e450d88832e47bc4a4e4de3f3762, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1
