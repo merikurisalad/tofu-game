@@ -36,3 +36,4 @@ public class Activities : MonoBehaviour
     {
         // TODO: notify user that they have maxed out their available activities
     }
+}
