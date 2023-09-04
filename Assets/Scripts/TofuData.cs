@@ -30,7 +30,7 @@ public class TofuData
     public int money;
     // public int activitiesDoneInADay;
     public int maxActivitiesInDay = 10; // arbitrary
-    public int availableActivities = maxActivitiesInDay;
+    public int availableActivities;
     public int today;
     public int remainingAttempts;
     public List<CollectionItem> collectionList = new List<CollectionItem>();
@@ -49,7 +49,7 @@ public class TofuData
         money = 50;
         // TODO: decide what to do with activities, max, etc.
         // activitiesDoneInADay = 0;
-        availableActivities = 10; // arbitrary
+        availableActivities = maxActivitiesInDay;
         today = 1;
         remainingAttempts = 3;
 
@@ -60,7 +60,8 @@ public class TofuData
     {
         status = loadedData.status;
         money = loadedData.money;
-        activitiesDoneInADay = loadedData.activitiesDoneInADay;
+        // activitiesDoneInADay = loadedData.activitiesDoneInADay;
+        availableActivities = loadedData.availableActivities;
         today = loadedData.today;
         remainingAttempts = loadedData.remainingAttempts;
         collectionList = loadedData.collectionList;
@@ -84,7 +85,7 @@ public class TofuData
         money += earnedMoney;
     }
 
-    public Bool CheckAndApplyActivityChange(int change)
+    public bool CheckAndApplyActivityChange(int change)
     {
         int activities = availableActivities + change;
         if (activities > 0)
