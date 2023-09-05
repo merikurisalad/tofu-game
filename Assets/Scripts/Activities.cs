@@ -5,6 +5,8 @@ using UnityEngine;
 public class Activities : MonoBehaviour
 {
     private TofuData tofuData;
+    private const int ACTION_UNIT = 2;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -19,8 +21,19 @@ public class Activities : MonoBehaviour
 
     void TakingAWalk()
     {
-        tofuData.activitiesDoneInADay--;
-        tofuData.status.ChangeHealth(2);
-        tofuData.status.ChangeAffection(2);
+        if (tofuData.CheckAndApplyActivityChange(-1))
+        {
+            tofuData.status.ChangeHealth(ACTION_UNIT);
+            tofuData.status.ChangeAffection(ACTION_UNIT);
+        }
+        else
+        {
+            SendMaxedOutActivity();
+        }
+    }
+
+    private void SendMaxedOutActivity()
+    {
+        // TODO: notify user that they have maxed out their available activities
     }
 }

@@ -28,7 +28,9 @@ public class TofuData
 
     public Status status;
     public int money;
-    public int activitiesDoneInADay;
+    // public int activitiesDoneInADay;
+    public int maxActivitiesInDay = 10; // arbitrary
+    public int availableActivities;
     public int today;
     public int remainingAttempts;
     public List<CollectionItem> collectionList = new List<CollectionItem>();
@@ -45,7 +47,9 @@ public class TofuData
     {
         status = new Status();
         money = 50;
-        activitiesDoneInADay = 0;
+        // TODO: decide what to do with activities, max, etc.
+        // activitiesDoneInADay = 0;
+        availableActivities = maxActivitiesInDay;
         today = 1;
         remainingAttempts = 3;
 
@@ -56,23 +60,24 @@ public class TofuData
     {
         status = loadedData.status;
         money = loadedData.money;
-        activitiesDoneInADay = loadedData.activitiesDoneInADay;
+        // activitiesDoneInADay = loadedData.activitiesDoneInADay;
+        availableActivities = loadedData.availableActivities;
         today = loadedData.today;
         remainingAttempts = loadedData.remainingAttempts;
         collectionList = loadedData.collectionList;
 
     }
-
+  
     // Update is called once per frame
     void Update()
     {
         // TODO: Can we set it to be called only once in a day?
-        //DateTime now = DateTime.UtcNow;
-        //if (now.Day != today)
-        //{
-        //  today = now.Day;
-        //    activitiesDoneInADay = 0;
-        // }
+        DateTime now = DateTime.UtcNow;
+        if (now.Day != today)
+        {
+            today = now.Day;
+            availableActivities = maxActivitiesInDay;
+        }
     }
 
     public void UpdateMoney(int earnedMoney)
@@ -80,4 +85,17 @@ public class TofuData
         money += earnedMoney;
     }
 
+    public bool CheckAndApplyActivityChange(int change)
+    {
+        int activities = availableActivities + change;
+        if (activities > 0)
+        {
+            availableActivities = activities;
+            return true;
+        } 
+        else
+        {
+            return false;
+        }
+    }
 }
