@@ -34,6 +34,7 @@ public class TofuData
     public int today;
     public int remainingAttempts;
     public List<CollectionItem> collectionList = new List<CollectionItem>();
+    public FrequencyManager frequencyManager;
 
 
 
@@ -50,11 +51,9 @@ public class TofuData
         // TODO: decide what to do with activities, max, etc.
         // activitiesDoneInADay = 0;
         availableActivities = maxActivitiesInDay;
-        today = 1;
         remainingAttempts = 3;
-
+        frequencyManager = new FrequencyManager();
     }
-
 
     public void ApplyLoadedData(TofuData loadedData)
     {
@@ -65,7 +64,6 @@ public class TofuData
         today = loadedData.today;
         remainingAttempts = loadedData.remainingAttempts;
         collectionList = loadedData.collectionList;
-
     }
   
     // Update is called once per frame
@@ -83,6 +81,26 @@ public class TofuData
     public void UpdateMoney(int earnedMoney)
     {
         money += earnedMoney;
+    }
+
+    public void UpdateStatus(int health, int affection, int intelligence, int charm, int reputation)
+    {
+        status.ChangeHealth(health);
+        status.ChangeAffection(affection);
+        status.ChangeIntelligence(intelligence);
+        status.ChangeCharm(charm);
+        status.ChangeReputation(reputation);
+    }
+
+    public DateTime getLastAccess()
+    {
+        return frequencyManager.lastAccess;
+    }
+
+    public void UpdateDaysPlayed()
+    {
+        frequencyManager.daysPlayed += 1;
+        availableActivities = maxActivitiesInDay;
     }
 
     public bool CheckAndApplyActivityChange(int change)
