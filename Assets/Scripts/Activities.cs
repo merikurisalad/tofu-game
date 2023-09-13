@@ -5,7 +5,11 @@ using UnityEngine;
 public class Activities : MonoBehaviour
 {
     private TofuData tofuData;
-    private const int ACTION_UNIT = 2;
+
+    public Activities(TofuData currentTofu)
+    {
+        tofuData = currentTofu;
+    }
     
     // Start is called before the first frame update
     void Start()
@@ -19,14 +23,18 @@ public class Activities : MonoBehaviour
         
     }
 
-    void TakingAWalk()
+    void DoAction(int health = 0, int affection = 0, int intelligence = 0, int charm = 0, int reputation = 0, int money=0)
     {
         if (tofuData.CheckAndApplyActivityChange(-1))
         {
-            tofuData.status.ChangeHealth(ACTION_UNIT);
-            tofuData.status.ChangeAffection(ACTION_UNIT);
+            tofuData.UpdateStatus(health, affection, intelligence, charm, reputation);
+            tofuData.UpdateMoney(money);
+            if (tofuData.availableActivities == 0)
+            {
+                tofuData.UpdateDaysPlayed();
+            }
         }
-        else
+        else 
         {
             SendMaxedOutActivity();
         }
