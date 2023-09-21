@@ -14,6 +14,8 @@ public class Movement : MonoBehaviour
     private float direction = 1f; // Current movement direction (1 = right, -1 = left)
     private SpriteRenderer TofuSprite;
     private Animator TofuAnimator;
+    public SpriteRenderer ItemSprite;
+    public Sprite[] ItemSpriteArray;
 
     // Update is called once per frame
     void Update()
@@ -24,6 +26,7 @@ public class Movement : MonoBehaviour
             {
                 isJump = true;
                 TofuAnimator.Play("tofu_jump");
+                ItemSprite.enabled = false;
                 jumpTime = 1f;
             }
        }
@@ -40,6 +43,7 @@ public class Movement : MonoBehaviour
                 idleTime = Random.Range(3f, 8f);
                 idleTimer = 0f;
                 TofuAnimator.Play("tofu_idle");
+                ItemSprite.enabled = false;
             }
         }
         else if (isIdle)
@@ -51,6 +55,7 @@ public class Movement : MonoBehaviour
                 isIdle = false;
                 runTime = Random.Range(3f, 8f);
                 TofuAnimator.Play("tofu_walk");
+                ItemSprite.enabled = false;
             }
         } 
         else 
@@ -62,6 +67,7 @@ public class Movement : MonoBehaviour
                 isIdle = true;
                 idleTime = Random.Range(3f, 8f);
                 TofuAnimator.Play("tofu_idle");
+                ItemSprite.enabled = false;
             }
             // Move the object horizontally
             transform.Translate(Vector2.right * 0.5f * direction * Time.deltaTime);
@@ -89,6 +95,21 @@ public class Movement : MonoBehaviour
         TofuSprite = this.GetComponent<SpriteRenderer>();
         TofuAnimator = this.GetComponent<Animator>();
         TofuAnimator.Play("tofu_idle");
+        ItemSprite.enabled = false;
         isIdle = true;
+    }
+
+    public void PlayShowerAnimation()
+    {
+        ItemSprite.sprite = ItemSpriteArray[0];
+        ItemSprite.enabled = true;
+        TofuAnimator.Play("tofu_shower");
+    }
+
+    public void PlayEatAnimation()
+    {
+        ItemSprite.sprite = ItemSpriteArray[1];
+        ItemSprite.enabled = true;
+        TofuAnimator.Play("tofu_receive_bigger");
     }
 }
