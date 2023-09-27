@@ -22,6 +22,6 @@ public class OutdoorActivities : Activities
 
     void TakingAWalk()
     {
-        base.DoAction(health=ACTION_UNIT, affection=ACTION_UNIT, charm=ACTION_UNIT);
+        base.DoAction(health=ACTION_UNIT, affection=ACTION_UNIT);
     }
 }

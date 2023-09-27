@@ -83,13 +83,12 @@ public class TofuData
         money += earnedMoney;
     }
 
-    public void UpdateStatus(int health, int affection, int intelligence, int charm, int reputation)
+    public void UpdateStatus(int health, int affection, int intelligence, int fame)
     {
         status.ChangeHealth(health);
         status.ChangeAffection(affection);
         status.ChangeIntelligence(intelligence);
-        status.ChangeCharm(charm);
-        status.ChangeReputation(reputation);
+        status.ChangeFame(fame);
     }
 
     public DateTime getLastAccess()

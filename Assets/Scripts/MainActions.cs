@@ -40,18 +40,18 @@ public class MainActions : Activities
 
     private void Wash()
     {
-        base.DoAction(health=ACTION_UNIT, charm=ACTION_UNIT);
+        base.DoAction(health=ACTION_UNIT);
         tofuData.frequencyManager.UpdateLastWash();
     }
 
     private void IGUpload()
     {
-        base.DoAction(reputation=ACTION_UNIT);
+        base.DoAction(fame=ACTION_UNIT);
     }
 
     private void GivingBean()
     {
-        base.DoAction(affection=ACTION_UNIT, charm=ACTION_UNIT);
+        base.DoAction(affection=ACTION_UNIT);
     }
     
     // Update is called once per frame

@@ -23,11 +23,11 @@ public class Activities : MonoBehaviour
         
     }
 
-    void DoAction(int health = 0, int affection = 0, int intelligence = 0, int charm = 0, int reputation = 0, int money=0)
+    void DoAction(int health = 0, int affection = 0, int intelligence = 0, int fame = 0, int money=0)
     {
         if (tofuData.CheckAndApplyActivityChange(-1))
         {
-            tofuData.UpdateStatus(health, affection, intelligence, charm, reputation);
+            tofuData.UpdateStatus(health, affection, intelligence, fame);
             tofuData.UpdateMoney(money);
             if (tofuData.availableActivities == 0)
             {
