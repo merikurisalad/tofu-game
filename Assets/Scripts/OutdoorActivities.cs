@@ -5,7 +5,9 @@ using UnityEngine;
 public class OutdoorActivities : Activities
 {
 
-    private const int ACTION_UNIT = 1;
+    private const int ACTION_UNIT_1ST = 1;
+    private const int ACTION_UNIT_2ND = 1.1;
+    private const int ACTION_UNIT_3RD = 1.2;
 
     // Start is called before the first frame update
     void Start()

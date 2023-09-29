@@ -11,7 +11,6 @@ public class Status : MonoBehaviour
     public static int affection;
     public static int intelligence;
     public static int fame;
-    public static int day;
 
     public const int INITIAL_LOWEST = 1;
     public const int INITIAL_HIGHEST = 10;
