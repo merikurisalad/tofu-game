@@ -35,6 +35,7 @@ public class TofuData
     public int remainingAttempts;
     public List<CollectionItem> collectionList = new List<CollectionItem>();
     public FrequencyManager frequencyManager;
+    public int currentStage;
 
 
 
@@ -53,6 +54,7 @@ public class TofuData
         availableActivities = maxActivitiesInDay;
         remainingAttempts = 3;
         frequencyManager = new FrequencyManager();
+        currentStage = 0;
     }
 
     public void ApplyLoadedData(TofuData loadedData)
@@ -83,13 +85,12 @@ public class TofuData
         money += earnedMoney;
     }
 
-    public void UpdateStatus(int health, int affection, int intelligence, int charm, int reputation)
+    public void UpdateStatus(int health, int affection, int intelligence, int fame)
     {
         status.ChangeHealth(health);
         status.ChangeAffection(affection);
         status.ChangeIntelligence(intelligence);
-        status.ChangeCharm(charm);
-        status.ChangeReputation(reputation);
+        status.ChangeFame(fame);
     }
 
     public DateTime getLastAccess()
@@ -101,6 +102,9 @@ public class TofuData
     {
         frequencyManager.daysPlayed += 1;
         availableActivities = maxActivitiesInDay;
+        if (frequencyManger.daysPlayed % 15 == 0) {
+            UpdateStage();
+        }
     }
 
     public bool CheckAndApplyActivityChange(int change)
@@ -114,6 +118,16 @@ public class TofuData
         else
         {
             return false;
+        }
+    }
+
+    public void UpdateStage() {
+        currentStage += 1;
+        if (currentStageStage < 3) {
+            // TODO: Lead to Stage Update Page and create new actions
+        }
+        else if (currentStage == 3) {
+            // TODO: Lead To Ending
         }
     }
 }

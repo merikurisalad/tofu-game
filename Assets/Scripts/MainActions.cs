@@ -15,7 +15,9 @@ public class MainActions : Activities
     public Button givingBean;
     private DateTime lastAccess;
 
-    private const int ACTION_UNIT = 2;
+    private const int ACTION_UNIT_1ST = 1;
+    private const int ACTION_UNIT_2ND = 1.1;
+    private const int ACTION_UNIT_3RD = 1.2;
 
     // Start is called before the first frame update
     void Start()
@@ -34,24 +36,24 @@ public class MainActions : Activities
 
     private void Feed()
     {
-        base.DoAction(health=ACTION_UNIT, affection=ACTION_UNIT);
+        base.DoAction(health=ACTION_UNIT_1ST*0.5, affection=ACTION_UNIT_1ST*0.5);
         tofuData.frequencyManager.UpdateLastFeed();
     }
 
     private void Wash()
     {
-        base.DoAction(health=ACTION_UNIT, charm=ACTION_UNIT);
+        base.DoAction(health=ACTION_UNIT_1ST);
         tofuData.frequencyManager.UpdateLastWash();
     }
 
     private void IGUpload()
     {
-        base.DoAction(reputation=ACTION_UNIT);
+        base.DoAction(fame=ACTION_UNIT_1ST);
     }
 
     private void GivingBean()
     {
-        base.DoAction(affection=ACTION_UNIT, charm=ACTION_UNIT);
+        base.DoAction(affection=ACTION_UNIT_1ST);
     }
     
     // Update is called once per frame

@@ -10,28 +10,28 @@ public class Status : MonoBehaviour
     public static int health;
     public static int affection;
     public static int intelligence;
-    public static int charm;
-    public static int reputation;
-    public static int day;
+    public static int fame;
 
     public const int INITIAL_LOWEST = 1;
     public const int INITIAL_HIGHEST = 10;
     public const int INITIAL_MONEY_LOWEST = 10;
     public const int INITIAL_MONEY_HIGHEST = 101;
+    public const int HIGHEST_STATUS_VALUE = 100;
+    public const int LOWEST_STATUS_VALUE = 0;
+    public const int NUM_STAGE = 3;
 
     int[] ReturnStatus()
     {
-        int[] status = new int[] { health, affection, intelligence, charm, reputation};
+        int[] status = new int[] { health, affection, intelligence, fame};
         return status;
     }
 
     int[] ReturnStatusLevel() // Return status in level-form
     {
-        int HIGHEST_STATUS_VALUE = 100; // Highest value could be changed
-        int interval = HIGHEST_STATUS_VALUE / 5; // Divider could be changed if level system is changeed
-        int[] statusLevel = new int[5];
+        int interval = HIGHEST_STATUS_VALUE / NUM_STAGE;
+        int[] statusLevel = new int[4];
         int[] statusArr = ReturnStatus();
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 4; i++)
         {
             statusLevel[i] = statusArr[i] / interval;
         }
@@ -46,8 +46,7 @@ public class Status : MonoBehaviour
         health = rand.Next(INITIAL_LOWEST, INITIAL_HIGHEST);
         affection = rand.Next(INITIAL_LOWEST, INITIAL_HIGHEST);
         intelligence = rand.Next(INITIAL_LOWEST, INITIAL_HIGHEST);
-        charm = rand.Next(INITIAL_LOWEST, INITIAL_HIGHEST);
-        reputation = rand.Next(INITIAL_LOWEST, INITIAL_HIGHEST);
+        fame = rand.Next(INITIAL_LOWEST, INITIAL_HIGHEST);
     }
 
     public void ChangeHealth(int score)
@@ -67,14 +66,9 @@ public class Status : MonoBehaviour
         intelligence += score;
     }
 
-    public void ChangeCharm(int score)
+    public void ChangeFame(int score)
     {
-        charm += score;
-    }
-
-    public void ChangeReputation(int score)
-    {
-        reputation += score;
+        fame += score;
     }
 
     private void CheckGameOver()
