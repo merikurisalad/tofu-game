@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Work : MonoBehaviour
+public class Work : Activities
 {
-    private static TofuData tofuData;
-    // TODO: THINK MORE - how should we manage TofuData?
     // Start is called before the first frame update
+    private const int ACTION_UNIT_1ST = 1;
+    private const int ACTION_UNIT_2ND = 1.1;
+    private const int ACTION_UNIT_3RD = 1.2;
     void Start()
     {
         
@@ -18,13 +19,11 @@ public class Work : MonoBehaviour
         
     }
 
-    void CollectingRecycles() 
+    void CollectingRecycles()
     {
         System.Random rand = new System.Random();
         int[] possibleAmount = new int[] { 5, 10, 15 };
         int earnedMoney = possibleAmount[rand.Next(0, 2)];
-        tofuData.UpdateMoney(earnedMoney);
-        tofuData.activitiesDoneInADay--;
-        tofuData.status.ChangeAffection(-1);
+        base.DoAction(affection=-(ACTION_UNIT_1ST*0.5), intelligence=(ACTION_UNIT_1ST*0.5), money=earnedMoney);
     }
 }

@@ -10,28 +10,28 @@ public class Status : MonoBehaviour
     public static int health;
     public static int affection;
     public static int intelligence;
-    public static int charm;
-    public static int reputation;
-    public static int day;
+    public static int fame;
 
     public const int INITIAL_LOWEST = 1;
     public const int INITIAL_HIGHEST = 10;
     public const int INITIAL_MONEY_LOWEST = 10;
     public const int INITIAL_MONEY_HIGHEST = 101;
+    public const int HIGHEST_STATUS_VALUE = 100;
+    public const int LOWEST_STATUS_VALUE = 0;
+    public const int NUM_STAGE = 3;
 
     int[] ReturnStatus()
     {
-        int[] status = new int[] { health, affection, intelligence, charm, reputation};
+        int[] status = new int[] { health, affection, intelligence, fame};
         return status;
     }
 
     int[] ReturnStatusLevel() // Return status in level-form
     {
-        int HIGHEST_STATUS_VALUE = 100; // Highest value could be changed
-        int interval = HIGHEST_STATUS_VALUE / 5; // Divider could be changed if level system is changeed
-        int[] statusLevel = new int[5];
+        int interval = HIGHEST_STATUS_VALUE / NUM_STAGE;
+        int[] statusLevel = new int[4];
         int[] statusArr = ReturnStatus();
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 4; i++)
         {
             statusLevel[i] = statusArr[i] / interval;
         }
@@ -46,20 +46,14 @@ public class Status : MonoBehaviour
         health = rand.Next(INITIAL_LOWEST, INITIAL_HIGHEST);
         affection = rand.Next(INITIAL_LOWEST, INITIAL_HIGHEST);
         intelligence = rand.Next(INITIAL_LOWEST, INITIAL_HIGHEST);
-        charm = rand.Next(INITIAL_LOWEST, INITIAL_HIGHEST);
-        reputation = rand.Next(INITIAL_LOWEST, INITIAL_HIGHEST);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // TODO: check with UI and discuss how to show the status on UI (or just delete Update method?)
-        ManageScene();
+        fame = rand.Next(INITIAL_LOWEST, INITIAL_HIGHEST);
     }
 
     public void ChangeHealth(int score)
     {
         health += score;
+        // moved from Update (instead of checking every frame, check when health changes)
+        CheckGameOver();
     }
 
     public void ChangeAffection(int score)
@@ -72,19 +66,14 @@ public class Status : MonoBehaviour
         intelligence += score;
     }
 
-    public void ChangeCharm(int score)
+    public void ChangeFame(int score)
     {
-        charm += score;
+        fame += score;
     }
 
-    public void ChangeReputation(int score)
+    private void CheckGameOver()
     {
-        reputation += score;
-    }
-
-    private void ManageScene()
-    {
-        if (health == 0)
+        if (health <= 0)
         {
             SceneManager.LoadScene("GameOverScene");
         }

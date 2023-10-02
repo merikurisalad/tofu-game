@@ -28,10 +28,14 @@ public class TofuData
 
     public Status status;
     public int money;
-    public int activitiesDoneInADay;
+    // public int activitiesDoneInADay;
+    public int maxActivitiesInDay = 10; // arbitrary
+    public int availableActivities;
     public int today;
     public int remainingAttempts;
     public List<CollectionItem> collectionList = new List<CollectionItem>();
+    public FrequencyManager frequencyManager;
+    public int currentStage;
 
 
 
@@ -45,34 +49,35 @@ public class TofuData
     {
         status = new Status();
         money = 50;
-        activitiesDoneInADay = 0;
-        today = 1;
+        // TODO: decide what to do with activities, max, etc.
+        // activitiesDoneInADay = 0;
+        availableActivities = maxActivitiesInDay;
         remainingAttempts = 3;
-
+        frequencyManager = new FrequencyManager();
+        currentStage = 0;
     }
-
 
     public void ApplyLoadedData(TofuData loadedData)
     {
         status = loadedData.status;
         money = loadedData.money;
-        activitiesDoneInADay = loadedData.activitiesDoneInADay;
+        // activitiesDoneInADay = loadedData.activitiesDoneInADay;
+        availableActivities = loadedData.availableActivities;
         today = loadedData.today;
         remainingAttempts = loadedData.remainingAttempts;
         collectionList = loadedData.collectionList;
-
     }
-
+  
     // Update is called once per frame
     void Update()
     {
         // TODO: Can we set it to be called only once in a day?
-        //DateTime now = DateTime.UtcNow;
-        //if (now.Day != today)
-        //{
-        //  today = now.Day;
-        //    activitiesDoneInADay = 0;
-        // }
+        DateTime now = DateTime.UtcNow;
+        if (now.Day != today)
+        {
+            today = now.Day;
+            availableActivities = maxActivitiesInDay;
+        }
     }
 
     public void UpdateMoney(int earnedMoney)
@@ -80,4 +85,49 @@ public class TofuData
         money += earnedMoney;
     }
 
+    public void UpdateStatus(int health, int affection, int intelligence, int fame)
+    {
+        status.ChangeHealth(health);
+        status.ChangeAffection(affection);
+        status.ChangeIntelligence(intelligence);
+        status.ChangeFame(fame);
+    }
+
+    public DateTime getLastAccess()
+    {
+        return frequencyManager.lastAccess;
+    }
+
+    public void UpdateDaysPlayed()
+    {
+        frequencyManager.daysPlayed += 1;
+        availableActivities = maxActivitiesInDay;
+        if (frequencyManger.daysPlayed % 15 == 0) {
+            UpdateStage();
+        }
+    }
+
+    public bool CheckAndApplyActivityChange(int change)
+    {
+        int activities = availableActivities + change;
+        if (activities > 0)
+        {
+            availableActivities = activities;
+            return true;
+        } 
+        else
+        {
+            return false;
+        }
+    }
+
+    public void UpdateStage() {
+        currentStage += 1;
+        if (currentStageStage < 3) {
+            // TODO: Lead to Stage Update Page and create new actions
+        }
+        else if (currentStage == 3) {
+            // TODO: Lead To Ending
+        }
+    }
 }
