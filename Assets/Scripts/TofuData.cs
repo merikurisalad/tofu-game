@@ -27,7 +27,7 @@ public class TofuData
 
 
     public Status status;
-    public int money;
+    public double money;
     // public int activitiesDoneInADay;
     public int maxActivitiesInDay = 10; // arbitrary
     public int availableActivities;
@@ -66,6 +66,8 @@ public class TofuData
         today = loadedData.today;
         remainingAttempts = loadedData.remainingAttempts;
         collectionList = loadedData.collectionList;
+        frequencyManager = loadedData.frequencyManager;
+        currentStage = loadedData.currentStage;
     }
   
     // Update is called once per frame
@@ -80,12 +82,12 @@ public class TofuData
         }
     }
 
-    public void UpdateMoney(int earnedMoney)
+    public void UpdateMoney(double earnedMoney)
     {
         money += earnedMoney;
     }
 
-    public void UpdateStatus(int health, int affection, int intelligence, int fame)
+    public void UpdateStatus(double health, double affection, double intelligence, double fame)
     {
         status.ChangeHealth(health);
         status.ChangeAffection(affection);
