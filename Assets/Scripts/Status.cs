@@ -7,33 +7,33 @@ using UnityEngine.SceneManagement;
 public class Status : MonoBehaviour
 {
     // all the attributes are >= 0 and <= 100
-    public static int health;
-    public static int affection;
-    public static int intelligence;
-    public static int fame;
+    public static double health;
+    public static double affection;
+    public static double intelligence;
+    public static double fame;
 
-    public const int INITIAL_LOWEST = 1;
-    public const int INITIAL_HIGHEST = 10;
-    public const int INITIAL_MONEY_LOWEST = 10;
-    public const int INITIAL_MONEY_HIGHEST = 101;
-    public const int HIGHEST_STATUS_VALUE = 100;
-    public const int LOWEST_STATUS_VALUE = 0;
+    public const double INITIAL_LOWEST = 1.0;
+    public const double INITIAL_HIGHEST = 5.0;
+    public const double INITIAL_MONEY_LOWEST = 10.0;
+    public const double INITIAL_MONEY_HIGHEST = 101.0;
+    public const double HIGHEST_STATUS_VALUE = 100.0;
+    public const double LOWEST_STATUS_VALUE = 0.0;
     public const int NUM_STAGE = 3;
 
-    int[] ReturnStatus()
+    double[] ReturnStatus()
     {
-        int[] status = new int[] { health, affection, intelligence, fame};
+        double[] status = new double[] { health, affection, intelligence, fame};
         return status;
     }
 
     int[] ReturnStatusLevel() // Return status in level-form
     {
-        int interval = HIGHEST_STATUS_VALUE / NUM_STAGE;
+        int interval = (int) HIGHEST_STATUS_VALUE / NUM_STAGE;
         int[] statusLevel = new int[4];
         int[] statusArr = ReturnStatus();
         for (int i = 0; i < 4; i++)
         {
-            statusLevel[i] = statusArr[i] / interval;
+            statusLevel[i] = (int) statusArr[i] / interval;
         }
 
         return statusLevel;
@@ -49,24 +49,24 @@ public class Status : MonoBehaviour
         fame = rand.Next(INITIAL_LOWEST, INITIAL_HIGHEST);
     }
 
-    public void ChangeHealth(int score)
+    public void ChangeHealth(double score)
     {
         health += score;
         // moved from Update (instead of checking every frame, check when health changes)
         CheckGameOver();
     }
 
-    public void ChangeAffection(int score)
+    public void ChangeAffection(double score)
     {
         affection += score;
     }
 
-    public void ChangeIntelligence(int score)
+    public void ChangeIntelligence(double score)
     {
         intelligence += score;
     }
 
-    public void ChangeFame(int score)
+    public void ChangeFame(double score)
     {
         fame += score;
     }
