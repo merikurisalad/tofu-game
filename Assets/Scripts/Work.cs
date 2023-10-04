@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Work : Activities
+public class Work : MonoBehaviour
 {
+    private static TofuData tofuData;
+    // TODO: THINK MORE - how should we manage TofuData?
     // Start is called before the first frame update
-    private const double ACTION_UNIT_1ST = 1.0;
-    private const double ACTION_UNIT_2ND = 1.1;
-    private const double ACTION_UNIT_3RD = 1.2;
     void Start()
     {
         
@@ -21,9 +20,23 @@ public class Work : Activities
 
     void CollectingRecycles()
     {
-        System.Random rand = new System.Random();
-        double[] possibleAmount = double int[] { 3.0, 4.0, 5.0 };
-        double earnedMoney = possibleAmount[rand.Next(0, 2)];
-        base.DoAction(affection=-(ACTION_UNIT_1ST*0.5), intelligence=(ACTION_UNIT_1ST*0.5), money=earnedMoney);
+        if (tofuData.CheckAndApplyActivityChange(-1))
+        {
+            System.Random rand = new System.Random();
+            int[] possibleAmount = new int[] { 5, 10, 15 };
+            int earnedMoney = possibleAmount[rand.Next(0, 2)];
+            tofuData.UpdateMoney(earnedMoney);
+            tofuData.status.ChangeAffection(-1);
+        }
+        else
+        {
+            SendMaxedOutActivity();
+        }
+        
+    }
+
+    private void SendMaxedOutActivity()
+    {
+        // TODO: notify user that they have maxed out their available activities
     }
 }

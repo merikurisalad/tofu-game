@@ -27,15 +27,13 @@ public class TofuData
 
 
     public Status status;
-    public double money;
+    public int money;
     // public int activitiesDoneInADay;
     public int maxActivitiesInDay = 10; // arbitrary
     public int availableActivities;
     public int today;
     public int remainingAttempts;
     public List<CollectionItem> collectionList = new List<CollectionItem>();
-    public FrequencyManager frequencyManager;
-    public int currentStage;
 
 
 
@@ -52,10 +50,11 @@ public class TofuData
         // TODO: decide what to do with activities, max, etc.
         // activitiesDoneInADay = 0;
         availableActivities = maxActivitiesInDay;
+        today = 1;
         remainingAttempts = 3;
-        frequencyManager = new FrequencyManager();
-        currentStage = 0;
+
     }
+
 
     public void ApplyLoadedData(TofuData loadedData)
     {
@@ -66,8 +65,7 @@ public class TofuData
         today = loadedData.today;
         remainingAttempts = loadedData.remainingAttempts;
         collectionList = loadedData.collectionList;
-        frequencyManager = loadedData.frequencyManager;
-        currentStage = loadedData.currentStage;
+
     }
   
     // Update is called once per frame
@@ -82,31 +80,9 @@ public class TofuData
         }
     }
 
-    public void UpdateMoney(double earnedMoney)
+    public void UpdateMoney(int earnedMoney)
     {
         money += earnedMoney;
-    }
-
-    public void UpdateStatus(double health, double affection, double intelligence, double fame)
-    {
-        status.ChangeHealth(health);
-        status.ChangeAffection(affection);
-        status.ChangeIntelligence(intelligence);
-        status.ChangeFame(fame);
-    }
-
-    public DateTime getLastAccess()
-    {
-        return frequencyManager.lastAccess;
-    }
-
-    public void UpdateDaysPlayed()
-    {
-        frequencyManager.daysPlayed += 1;
-        availableActivities = maxActivitiesInDay;
-        if (frequencyManger.daysPlayed % 15 == 0) {
-            UpdateStage();
-        }
     }
 
     public bool CheckAndApplyActivityChange(int change)
@@ -120,16 +96,6 @@ public class TofuData
         else
         {
             return false;
-        }
-    }
-
-    public void UpdateStage() {
-        currentStage += 1;
-        if (currentStageStage < 3) {
-            // TODO: Lead to Stage Update Page and create new actions
-        }
-        else if (currentStage == 3) {
-            // TODO: Lead To Ending
         }
     }
 }

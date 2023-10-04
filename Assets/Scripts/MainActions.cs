@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System;
 
 // TODO: CHECK WITH UI ON HOW ACTIONS ARE DONE -> MIGHT MOVE THE COMPONENT?
-public class MainActions : Activities
+public class MainActions : MonoBehaviour
 {
     public Button feed;
     public DateTime lastFeed;
@@ -13,11 +13,10 @@ public class MainActions : Activities
     public DateTime lastWash;
     public Button IGupload;
     public Button givingBean;
+    private static TofuData tofuData;
     private DateTime lastAccess;
 
-    private const double ACTION_UNIT_1ST = 1.0;
-    private const double ACTION_UNIT_2ND = 1.1;
-    private const double ACTION_UNIT_3RD = 1.2;
+    private const int ACTION_UNIT = 2;
 
     // Start is called before the first frame update
     void Start()
@@ -28,37 +27,108 @@ public class MainActions : Activities
     private void OnEnable()
     {
         //Register Button Events
-        feed.onClick.AddListener(() => Feed());
-        wash.onClick.AddListener(() => Wash());
-        IGupload.onClick.AddListener(() => IGUpload());
-        givingBean.onClick.AddListener(() => GivingBean());
+        feed.onClick.AddListener(() => FeedCallBack());
+        wash.onClick.AddListener(() => WashCallBack());
+        IGupload.onClick.AddListener(() => IGUploadCallBack());
+        givingBean.onClick.AddListener(() => GivingBeanCallBack());
     }
 
-    private void Feed()
+    private void FeedCallBack()
     {
-        base.DoAction(health=ACTION_UNIT_1ST*0.5, affection=ACTION_UNIT_1ST*0.5);
-        tofuData.frequencyManager.UpdateLastFeed();
+        if (tofuData.CheckAndApplyActivityChange(-1))
+        {
+            tofuData.status.ChangeHealth(ACTION_UNIT);
+            tofuData.status.ChangeAffection(ACTION_UNIT);
+            lastFeed = DateTime.UtcNow;
+        }
+        else
+        {
+            SendMaxedOutActivity();
+        }
     }
 
-    private void Wash()
+    private void WashCallBack()
     {
-        base.DoAction(health=ACTION_UNIT_1ST);
-        tofuData.frequencyManager.UpdateLastWash();
+        if (tofuData.CheckAndApplyActivityChange(-1))
+        {
+            tofuData.status.ChangeHealth(ACTION_UNIT);
+            tofuData.status.ChangeCharm(ACTION_UNIT);
+            lastFeed = DateTime.UtcNow;
+        }
+        else
+        {
+            SendMaxedOutActivity();
+        }
     }
 
-    private void IGUpload()
+    private void IGUploadCallBack()
     {
-        base.DoAction(fame=ACTION_UNIT_1ST);
+        if (tofuData.CheckAndApplyActivityChange(-1))
+        {
+            tofuData.status.ChangeReputation(ACTION_UNIT);
+        }
+        else
+        {
+            SendMaxedOutActivity();
+        }
     }
 
-    private void GivingBean()
+    private void GivingBeanCallBack()
     {
-        base.DoAction(affection=ACTION_UNIT_1ST);
+        if (tofuData.CheckAndApplyActivityChange(-1))
+        {
+            tofuData.status.ChangeAffection(ACTION_UNIT);
+            tofuData.status.ChangeCharm(ACTION_UNIT);
+        }
+        else
+        {
+            SendMaxedOutActivity();
+        }
+    }
+
+    private void SendMaxedOutActivity()
+    {
+        // TODO: notify user that they have maxed out their available activities
     }
     
     // Update is called once per frame
     void Update()
     {
+        CheckFeedFrequency();
+        CheckWashFrequency();
+        CheckAcccessFrequency();
+        // TODO: I set it in Update(), but I think once in a day could be enough for checking frequencies
+    }
 
+    private void CheckFeedFrequency()
+    {
+        DateTime now = DateTime.UtcNow;
+        if (now.Day - lastFeed.Day < 2)
+        {
+            tofuData.status.ChangeHealth(ACTION_UNIT * (-1));
+        }
+    }
+
+    private void CheckWashFrequency()
+    {
+        DateTime now = DateTime.UtcNow;
+        if (now.Day - lastWash.Day < 2)
+        {
+            tofuData.status.ChangeHealth(ACTION_UNIT * (-1));
+        }
+    }
+
+    private void CheckAcccessFrequency()
+    {
+        DateTime now = DateTime.UtcNow;
+        if (now.Day - lastAccess.Day > 2)
+        {
+            tofuData.status.ChangeAffection(ACTION_UNIT * (-1));
+        }
+
+        if (now.Day - lastAccess.Day == 1)
+        {
+            tofuData.status.ChangeAffection(ACTION_UNIT);
+        }
     }
 }
