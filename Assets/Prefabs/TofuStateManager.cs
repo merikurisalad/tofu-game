@@ -5,16 +5,27 @@ using UnityEngine;
 public class TofuStateManager : MonoBehaviour
 {
     TofuBaseState currentState;
-    TofuIdleState IdleState = new TofuIdleState();
-    TofuJumpState JumpState = new TofuJumpState();
-    TofuReceiveState ReceiveState = new TofuReceiveState();
-    TofuShowerState ShowerState = new TofuShowerState();
+    public TofuIdleState IdleState = new TofuIdleState();
+    public TofuJumpState JumpState = new TofuJumpState();
+    public TofuReceiveState ReceiveState = new TofuReceiveState();
+    public TofuShowerState ShowerState = new TofuShowerState();
+    public TofuPickupState PickupState = new TofuPickupState();
+
+    public SpriteRenderer TofuSprite;
+    public Animator TofuAnimator;
+    public SpriteRenderer ItemSprite;
+    public Sprite[] ItemSpriteArray;
 
     // Start is called before the first frame update
     void Start()
     {
         // starting state for the state machine
         currentState = IdleState;
+        // assign reference
+        TofuSprite = this.GetComponent<SpriteRenderer>(); // not used for now
+        TofuAnimator = this.GetComponent<Animator>();
+        ItemSprite.enabled = false;
+
         // "this" is a reference to the context (this EXACT Monobehavior script)
         currentState.EnterState(this);
     }
@@ -22,6 +33,27 @@ public class TofuStateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        currentState.UpdateState(this);
+    }
+
+    public void SwitchState(TofuBaseState state)
+    {
+        currentState = state;
+        state.EnterState(this);
+    }
+
+    public void OnMainButtonClicked()
+    {
+        SwitchState(ShowerState);
+    }
+
+    public void OnAdventureButtonClicked()
+    {
+        SwitchState(ReceiveState);
+    }
+
+    public void OnWorkButtonClicked()
+    {
+        SwitchState(PickupState);
     }
 }
