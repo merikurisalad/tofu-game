@@ -1614,9 +1614,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1412065234}
-        m_TargetAssemblyTypeName: Movement, Assembly-CSharp
-        m_MethodName: PlayEatAnimation
+      - m_Target: {fileID: 1749069715}
+        m_TargetAssemblyTypeName: TofuStateManager, Assembly-CSharp
+        m_MethodName: OnAdventureButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1675,6 +1675,10 @@ PrefabInstance:
     - target: {fileID: 308775994710351629, guid: d57c939a35ec041d193873ad9d444339, type: 3}
       propertyPath: m_SortingOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3621853587205132699, guid: d57c939a35ec041d193873ad9d444339, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3621853587205132699, guid: d57c939a35ec041d193873ad9d444339, type: 3}
       propertyPath: ItemSprite
@@ -1754,19 +1758,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5183237921730346537, guid: d57c939a35ec041d193873ad9d444339, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1515562922}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5979771436462707626, guid: d57c939a35ec041d193873ad9d444339, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1749069715}
   m_SourcePrefab: {fileID: 100100000, guid: d57c939a35ec041d193873ad9d444339, type: 3}
---- !u!114 &1412065234 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3621853587205132699, guid: d57c939a35ec041d193873ad9d444339, type: 3}
-  m_PrefabInstance: {fileID: 1408810826}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad87aed56d4014b06ab50a59c0046393, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1412065235 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5183237921730346537, guid: d57c939a35ec041d193873ad9d444339, type: 3}
@@ -2407,9 +2403,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1412065234}
-        m_TargetAssemblyTypeName: Movement, Assembly-CSharp
-        m_MethodName: PlayShowerAnimation
+      - m_Target: {fileID: 1749069715}
+        m_TargetAssemblyTypeName: TofuStateManager, Assembly-CSharp
+        m_MethodName: OnMainButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2607,7 +2603,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1694618776}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1749069715}
+        m_TargetAssemblyTypeName: TofuStateManager, Assembly-CSharp
+        m_MethodName: OnWorkButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1694618776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2780,6 +2788,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1736008211}
   m_CullTransparentMesh: 1
+--- !u!1 &1749069714 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5979771436462707626, guid: d57c939a35ec041d193873ad9d444339, type: 3}
+  m_PrefabInstance: {fileID: 1408810826}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1749069715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749069714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26516ef28e0244792901bf3900a2baed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TofuSprite: {fileID: 0}
+  TofuAnimator: {fileID: 0}
+  ItemSprite: {fileID: 1515562923}
+  ItemSpriteArray:
+  - {fileID: 21300000, guid: 6eb0368c243434ef6a6c4a2ed2c96d5f, type: 3}
+  - {fileID: 21300000, guid: 93f48df001e764e1896a78b2270180ac, type: 3}
+  - {fileID: 21300000, guid: a6c093ceb6f3e47f4b0d47df53dfe9a5, type: 3}
 --- !u!1 &1787175175
 GameObject:
   m_ObjectHideFlags: 0
