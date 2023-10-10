@@ -8,9 +8,18 @@ public class TofuShowerState : TofuBaseState
     public override void EnterState(TofuStateManager tofu)
     {
         Debug.Log("Hello from the Shower State");
+
         tofu.ItemSprite.sprite = tofu.ItemSpriteArray[0];
         tofu.ItemSprite.enabled = true;
         tofu.TofuAnimator.Play("tofu_shower");
+        
+        // add dialogue
+        tofu.talkPanel.SetActive(true);
+        tofu.dialogueManager.dialogues = new string[]
+        {
+            "Tofu has showered!"
+        };
+        tofu.dialogueManager.ShowNextDialogue();
     }
 
     public override void UpdateState(TofuStateManager tofu)

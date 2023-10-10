@@ -16,6 +16,9 @@ public class TofuStateManager : MonoBehaviour
     public SpriteRenderer ItemSprite;
     public Sprite[] ItemSpriteArray;
 
+    public DialogueManager dialogueManager;
+    public GameObject talkPanel;
+
     // Start is called before the first frame update
     void Start()
     {

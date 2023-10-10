@@ -10,8 +10,10 @@ public class DialogueManager : MonoBehaviour
     public string[] dialogues;
     public string nextSceneName;
 
-    int dialogueIndex = 0;
+    public GameObject talkPanel;
 
+    int dialogueIndex = 0;
+    
     private void Update()
     {
         // Debug.Log("DialogueManager Update called!");
@@ -60,6 +62,11 @@ public class DialogueManager : MonoBehaviour
         if (!string.IsNullOrEmpty(nextSceneName))
         {
             SceneManager.LoadScene(nextSceneName);
+        }
+        else
+        {
+            talkPanel.SetActive(false);
+            dialogueIndex = 0;
         }
     }
 
