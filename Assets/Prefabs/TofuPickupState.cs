@@ -11,6 +11,14 @@ public class TofuPickupState : TofuBaseState
         tofu.ItemSprite.sprite = tofu.ItemSpriteArray[2];
         tofu.ItemSprite.enabled = true;
         tofu.TofuAnimator.Play("tofu_pickup");
+
+        // add dialogue
+        tofu.talkPanel.SetActive(true);
+        tofu.dialogueManager.dialogues = new string[]
+        {
+            "Tofu worked hard! Well done!"
+        };
+        tofu.dialogueManager.ShowNextDialogue();
     }
 
     public override void UpdateState(TofuStateManager tofu)

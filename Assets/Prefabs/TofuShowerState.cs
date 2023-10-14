@@ -17,7 +17,7 @@ public class TofuShowerState : TofuBaseState
         tofu.talkPanel.SetActive(true);
         tofu.dialogueManager.dialogues = new string[]
         {
-            "Tofu has showered!"
+            "Tofu showered! It's a bit soggy now..."
         };
         tofu.dialogueManager.ShowNextDialogue();
     }
