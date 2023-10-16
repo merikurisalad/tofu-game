@@ -30,7 +30,7 @@ public class Status : MonoBehaviour
     {
         int interval = (int) HIGHEST_STATUS_VALUE / NUM_STAGE;
         int[] statusLevel = new int[4];
-        int[] statusArr = ReturnStatus();
+        double[] statusArr = ReturnStatus();
         for (int i = 0; i < 4; i++)
         {
             statusLevel[i] = (int) statusArr[i] / interval;
@@ -43,10 +43,14 @@ public class Status : MonoBehaviour
     void Start()
     {
         System.Random rand = new System.Random();
-        health = rand.Next(INITIAL_LOWEST, INITIAL_HIGHEST);
-        affection = rand.Next(INITIAL_LOWEST, INITIAL_HIGHEST);
-        intelligence = rand.Next(INITIAL_LOWEST, INITIAL_HIGHEST);
-        fame = rand.Next(INITIAL_LOWEST, INITIAL_HIGHEST);
+        double randomDouble = rand.NextDouble();
+        health = (INITIAL_HIGHEST - INITIAL_LOWEST) * randomDouble + INITIAL_LOWEST;
+        randomDouble = rand.NextDouble();
+        affection = (INITIAL_HIGHEST - INITIAL_LOWEST) * randomDouble + INITIAL_LOWEST;
+        randomDouble = rand.NextDouble();
+        intelligence = (INITIAL_HIGHEST - INITIAL_LOWEST) * randomDouble + INITIAL_LOWEST;
+        randomDouble = rand.NextDouble();
+        fame = (INITIAL_HIGHEST - INITIAL_LOWEST) * randomDouble + INITIAL_LOWEST;
     }
 
     public void ChangeHealth(double score)

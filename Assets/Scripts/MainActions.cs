@@ -19,6 +19,11 @@ public class MainActions : Activities
     private const double ACTION_UNIT_2ND = 1.1;
     private const double ACTION_UNIT_3RD = 1.2;
 
+    public MainActions(TofuData tofu) : base(tofu)
+    {
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,24 +41,24 @@ public class MainActions : Activities
 
     private void Feed()
     {
-        base.DoAction(health=ACTION_UNIT_1ST*0.5, affection=ACTION_UNIT_1ST*0.5);
+        base.DoAction(health:ACTION_UNIT_1ST*0.5, affection:ACTION_UNIT_1ST*0.5);
         tofuData.frequencyManager.UpdateLastFeed();
     }
 
     private void Wash()
     {
-        base.DoAction(health=ACTION_UNIT_1ST);
+        base.DoAction(health:ACTION_UNIT_1ST);
         tofuData.frequencyManager.UpdateLastWash();
     }
 
     private void IGUpload()
     {
-        base.DoAction(fame=ACTION_UNIT_1ST);
+        base.DoAction(fame:ACTION_UNIT_1ST);
     }
 
     private void GivingBean()
     {
-        base.DoAction(affection=ACTION_UNIT_1ST);
+        base.DoAction(affection:ACTION_UNIT_1ST);
     }
     
     // Update is called once per frame

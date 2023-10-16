@@ -8,6 +8,12 @@ public class Work : Activities
     private const double ACTION_UNIT_1ST = 1.0;
     private const double ACTION_UNIT_2ND = 1.1;
     private const double ACTION_UNIT_3RD = 1.2;
+
+    public Work(TofuData tofu) : base(tofu)
+    {
+
+    }
+
     void Start()
     {
         
@@ -22,8 +28,8 @@ public class Work : Activities
     void CollectingRecycles()
     {
         System.Random rand = new System.Random();
-        double[] possibleAmount = double int[] { 3.0, 4.0, 5.0 };
+        double[] possibleAmount = { 3.0, 4.0, 5.0 };
         double earnedMoney = possibleAmount[rand.Next(0, 2)];
-        base.DoAction(affection=-(ACTION_UNIT_1ST*0.5), intelligence=(ACTION_UNIT_1ST*0.5), money=earnedMoney);
+        base.DoAction(affection:-(ACTION_UNIT_1ST*0.5), intelligence:(ACTION_UNIT_1ST*0.5), money:earnedMoney);
     }
 }

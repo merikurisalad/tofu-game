@@ -29,9 +29,6 @@ public class FrequencyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckFeedFrequency();
-        CheckWashFrequency();
-        CheckAcccessFrequency();
         // TODO: I set it in Update(), but I think once in a day could be enough for checking frequencies
     }
 
@@ -45,33 +42,49 @@ public class FrequencyManager : MonoBehaviour
         lastWash = daysPlayed;
     }
 
-    private void CheckFeedFrequency()
+    public bool IsFeedFrequentEnough()
     {
-        if (daysPlayed - lastFeed > 2)
-        {
-            tofuData.status.ChangeHealth(ACTION_UNIT * (-1));
-        }
+        return (daysPlayed - lastFeed) <= 2;
     }
 
-    private void CheckWashFrequency()
+    public bool IsWashFrequentEnough()
     {
-        if (daysPlayed - lastWash > 2)
-        {
-            tofuData.status.ChangeHealth(ACTION_UNIT * (-1));
-        }
+        return (daysPlayed - lastWash <= 2);
     }
 
-    private void CheckAcccessFrequency()
+    public bool IsAccessFrequentEnough()
     {
         DateTime now = DateTime.UtcNow;
-        if (now.Day - lastAccess.Day > 2)
-        {
-            tofuData.status.ChangeAffection(ACTION_UNIT * (-1));
-        }
-
-        if (now.Day - lastAccess.Day == 1)
-        {
-            tofuData.status.ChangeAffection(ACTION_UNIT);
-        }
+        return (now.Day - lastAccess.Day <= 2);
     }
+
+    //private void CheckFeedFrequency()
+    //{
+    //    if (daysPlayed - lastFeed > 2)
+    //    {
+    //        tofuData.status.ChangeHealth(ACTION_UNIT * (-1));
+    //    }
+    //}
+
+    //private void CheckWashFrequency()
+    //{
+    //    if (daysPlayed - lastWash > 2)
+    //    {
+    //        tofuData.status.ChangeHealth(ACTION_UNIT * (-1));
+    //    }
+    //}
+
+    //private void CheckAcccessFrequency()
+    //{
+    //    DateTime now = DateTime.UtcNow;
+    //    if (now.Day - lastAccess.Day > 2)
+    //    {
+    //        tofuData.status.ChangeAffection(ACTION_UNIT * (-1));
+    //    }
+
+    //    if (now.Day - lastAccess.Day == 1)
+    //    {
+    //        tofuData.status.ChangeAffection(ACTION_UNIT);
+    //    }
+    //}
 }
