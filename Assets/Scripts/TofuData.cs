@@ -104,7 +104,7 @@ public class TofuData
     {
         frequencyManager.daysPlayed += 1;
         availableActivities = maxActivitiesInDay;
-        if (frequencyManger.daysPlayed % 15 == 0) {
+        if (frequencyManager.daysPlayed % 15 == 0) {
             UpdateStage();
         }
     }
@@ -125,7 +125,7 @@ public class TofuData
 
     public void UpdateStage() {
         currentStage += 1;
-        if (currentStageStage < 3) {
+        if (currentStage < 3) {
             // TODO: Lead to Stage Update Page and create new actions
         }
         else if (currentStage == 3) {
