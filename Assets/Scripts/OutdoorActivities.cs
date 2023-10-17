@@ -9,6 +9,11 @@ public class OutdoorActivities : Activities
     private const double ACTION_UNIT_2ND = 1.1;
     private const double ACTION_UNIT_3RD = 1.2;
 
+    public OutdoorActivities(TofuData tofu) : base(tofu)
+    {
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +29,6 @@ public class OutdoorActivities : Activities
 
     void TakingAWalk()
     {
-        base.DoAction(health=ACTION_UNIT*0.5, affection=ACTION_UNIT*0.5);
+        base.DoAction(health: ACTION_UNIT_1ST, affection: ACTION_UNIT_1ST, fame: ACTION_UNIT_1ST);
     }
 }

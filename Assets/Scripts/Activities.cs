@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Activities : MonoBehaviour
 {
-    private TofuData tofuData;
+    public TofuData tofuData;
 
     public Activities(TofuData currentTofu)
     {
@@ -23,7 +23,7 @@ public class Activities : MonoBehaviour
         
     }
 
-    void DoAction(double health = 0, double affection = 0, double intelligence = 0, double fame = 0, double money=0)
+    public void DoAction(double health = 0, double affection = 0, double intelligence = 0, double fame = 0, double money=0)
     {
         if (tofuData.CheckAndApplyActivityChange(-1))
         {
