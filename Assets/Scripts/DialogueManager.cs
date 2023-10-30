@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
+    public string eventName;
     public TypeEffect dialougue;
     public string[] dialogues;
+    public Sprite[] dialogueImages;
+    public Image backgroundImage;
     public string nextSceneName;
+
 
     int dialogueIndex = 0;
 
@@ -46,6 +51,11 @@ public class DialogueManager : MonoBehaviour
         {
             Debug.Log(dialogues[dialogueIndex]);
 
+            if (backgroundImage.sprite != dialogueImages[dialogueIndex]) // Mighe need to double check ..
+            {
+                backgroundImage.sprite = dialogueImages[dialogueIndex];
+            }
+
             dialougue.SetMsg(dialogues[dialogueIndex]);
             dialogueIndex++;
         }
@@ -61,6 +71,14 @@ public class DialogueManager : MonoBehaviour
         {
             SceneManager.LoadScene(nextSceneName);
         }
+    }
+
+    public void SetDialogueData(EventData eventData)
+    {
+        eventName = eventData.eventSceneName;
+        dialogues = eventData.dialogueTexts;
+        dialogueImages = eventData.backgroundImg;
+        nextSceneName = eventData.nextSceneName;
     }
 
 }
