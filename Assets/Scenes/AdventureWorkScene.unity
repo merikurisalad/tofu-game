@@ -3595,7 +3595,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: cashier
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 88d85e37993d0d447ae25ea87c6c12e5, type: 2}
   m_sharedMaterial: {fileID: 4784658012126000642, guid: 88d85e37993d0d447ae25ea87c6c12e5, type: 2}
@@ -3850,7 +3850,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: janitor
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 88d85e37993d0d447ae25ea87c6c12e5, type: 2}
   m_sharedMaterial: {fileID: 4784658012126000642, guid: 88d85e37993d0d447ae25ea87c6c12e5, type: 2}
