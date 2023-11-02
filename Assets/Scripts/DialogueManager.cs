@@ -52,9 +52,12 @@ public class DialogueManager : MonoBehaviour
         {
             Debug.Log(dialogues[dialogueIndex]);
 
-            if (backgroundImage.sprite != dialogueImages[dialogueIndex]) // Mighe need to double check ..
+            if (dialogueImages.Length > 0) // JM: added this clause cuz I don't use this
             {
-                backgroundImage.sprite = dialogueImages[dialogueIndex];
+                if (backgroundImage.sprite != dialogueImages[dialogueIndex]) // Mighe need to double check ..
+                {
+                    backgroundImage.sprite = dialogueImages[dialogueIndex];
+                }
             }
 
             dialougue.SetMsg(dialogues[dialogueIndex]);
