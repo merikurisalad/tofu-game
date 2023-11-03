@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class Status : MonoBehaviour
 {
@@ -20,13 +21,16 @@ public class Status : MonoBehaviour
     public const double LOWEST_STATUS_VALUE = 0.0;
     public const int NUM_STAGE = 3;
 
-    double[] ReturnStatus()
+    public DateTime startDate;
+    public int inGameDaysPlayed;
+
+    public double[] ReturnStatus()
     {
         double[] status = new double[] { health, affection, intelligence, fame};
         return status;
     }
 
-    int[] ReturnStatusLevel() // Return status in level-form
+    public int[] ReturnStatusLevel() // Return status in level-form
     {
         int interval = (int) HIGHEST_STATUS_VALUE / NUM_STAGE;
         int[] statusLevel = new int[4];
