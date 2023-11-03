@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO: Manage frequency manager
 public class FrequencyManager : MonoBehaviour
 {
     public DateTime startDate;
@@ -57,34 +58,4 @@ public class FrequencyManager : MonoBehaviour
         DateTime now = DateTime.UtcNow;
         return (now.Day - lastAccess.Day <= 2);
     }
-
-    //private void CheckFeedFrequency()
-    //{
-    //    if (daysPlayed - lastFeed > 2)
-    //    {
-    //        tofuData.status.ChangeHealth(ACTION_UNIT * (-1));
-    //    }
-    //}
-
-    //private void CheckWashFrequency()
-    //{
-    //    if (daysPlayed - lastWash > 2)
-    //    {
-    //        tofuData.status.ChangeHealth(ACTION_UNIT * (-1));
-    //    }
-    //}
-
-    //private void CheckAcccessFrequency()
-    //{
-    //    DateTime now = DateTime.UtcNow;
-    //    if (now.Day - lastAccess.Day > 2)
-    //    {
-    //        tofuData.status.ChangeAffection(ACTION_UNIT * (-1));
-    //    }
-
-    //    if (now.Day - lastAccess.Day == 1)
-    //    {
-    //        tofuData.status.ChangeAffection(ACTION_UNIT);
-    //    }
-    //}
 }
