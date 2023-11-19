@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class OptionManager : MonoBehaviour
 {
@@ -11,12 +12,27 @@ public class OptionManager : MonoBehaviour
     public Button korButton;
     public Button vibrationOnButton;
     public Button vibrationOffButton;
+    public Button collection;
+    public Button contactUs;
+    public GameObject contactPanel;
+    private bool isConatctPanelActive;
 
 
     // Start is called before the first frame update
     void Start()
     {
         LoadSetting();
+
+        isConatctPanelActive = false;
+        contactPanel.SetActive(false);
+
+        contactUs.onClick.AddListener(ToggleConatactPanel);
+    }
+
+    void ToggleConatactPanel()
+    {
+        contactPanel.SetActive(!isConatctPanelActive);
+        isConatctPanelActive = !isConatctPanelActive;
     }
 
     void LoadSetting()
@@ -101,6 +117,15 @@ public class OptionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // TODO: MOUSE click or Touch 
+        if (Input.GetMouseButtonDown(0) && isConatctPanelActive)
+        {
+            if (!EventSystem.current.IsPointerOverGameObject())
+            {
+                isConatctPanelActive = false;
+                contactPanel.SetActive(false);
+            }
+        }
+
     }
 }
